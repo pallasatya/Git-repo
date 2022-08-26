@@ -1,0 +1,21 @@
+node {
+
+    stage('Clone') {
+          git branch: 'main', credentialsId: 'github', url: 'https://github.com/pallasatya/Git-repo.git'
+	}	
+    stage('Clean') {
+        sh 'mvn clean' 
+    }
+	stage('validate') {
+        sh 'mvn validate'   
+    }
+    stage('compile') {
+        sh 'mvn compile'   
+    }
+	stage('Test') {
+	    sh 'mvn test'
+    }
+    stage('package') {
+            sh 'mvn package'    
+    }
+}
